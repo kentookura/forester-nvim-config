@@ -12,6 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "saghen/blink.cmp", opts = { sources = { default = { "lsp" } } } },
 })
 
 local on_attach =
