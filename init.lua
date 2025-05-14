@@ -12,8 +12,29 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "saghen/blink.cmp", opts = { sources = { default = { "lsp" } } } },
+	{ "nvim-treesitter" },
+	{ "saghen/blink.cmp", opts = {
+		sources = {
+			default = {
+				"lsp",
+			},
+		},
+	} },
 })
+
+vim.filetype.add({ extension = { tree = "forester" } })
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.forester = {
+	install_info = {
+		url = "https://github.com/kentookura/tree-sitter-forester",
+		files = { "src/parser.c" },
+		branch = "main",
+		generate_requires_npm = false,
+		requires_generate_from_grammar = false,
+	},
+	filetype = "forester",
+}
 
 local on_attach =
 	function(event)
@@ -110,8 +131,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = on_attach,
 })
-
-vim.filetype.add({ extension = { tree = "forester" } })
 
 vim.lsp.config["forester-lsp"] = {
 	cmd = { "forester", "lsp", "-vvv" },
