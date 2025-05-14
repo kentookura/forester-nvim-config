@@ -36,6 +36,8 @@ parser_config.forester = {
 	filetype = "forester",
 }
 
+require("nvim-treesitter.configs").setup({ ensure_installed = { "forester" } })
+
 local on_attach =
 	function(event)
 		local map = function(keys, func, desc, mode)
