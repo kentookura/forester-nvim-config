@@ -37,7 +37,12 @@ parser_config.forester = {
 	filetype = "forester",
 }
 
-require("nvim-treesitter.configs").setup({ ensure_installed = { "forester" } })
+require("nvim-treesitter.configs").setup({
+  ensure_installed = { "forester" },
+  highlight = {
+    enable = true
+  }
+})
 
 local on_attach =
 	function(event)
