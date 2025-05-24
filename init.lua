@@ -14,6 +14,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "saghen/blink.cmp", opts = {
+		fuzzy = { implementation = "lua" },
 		sources = {
 			default = {
 				"lsp",
